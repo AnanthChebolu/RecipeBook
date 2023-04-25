@@ -1,0 +1,1063 @@
+{
+	"info": {
+		"_postman_id": "f82d691e-3494-4a5c-a29e-a99f3628192b",
+		"name": "EasyChef",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21802714"
+	},
+	"item": [
+		{
+			"name": "accounts",
+			"item": [
+				{
+					"name": "profile",
+					"item": [
+						{
+							"name": "Upload/Change Profile Picture",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "avatar",
+											"type": "file",
+											"src": "/home/domi/Pictures/pfps/kakashi.jpeg"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:8000/accounts/profile/edit/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"accounts",
+										"profile",
+										"edit",
+										""
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update Profile",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"nandomancini@example.com\",\n  \"first_name\": \"Mancini\",\n  \"last_name\": \"Nando\",\n  \"password\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/accounts/profile/edit/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"accounts",
+										"profile",
+										"edit",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "View Profile",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/accounts/profile/view/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"accounts",
+										"profile",
+										"view",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register Account",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"nando\",\n  \"first_name\": \"Nando\",\n  \"last_name\": \"Mancini\",\n  \"email\": \"nando@example.com\",\n  \"phone_number\": \"+14166473090\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/accounts/register/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"nando\",\n  \"password\": \"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/accounts/login/",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"accounts",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "recipes",
+			"item": [
+				{
+					"name": "search",
+					"item": [
+						{
+							"name": "Recipe Search",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/?diets=Keto&limit=1&offset=0",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": "pizza",
+											"description": "Can be a: creator username, ingredient name, recipe name",
+											"disabled": true
+										},
+										{
+											"key": "cuisines",
+											"value": "Italian",
+											"description": "Filters by cuisine: Must be an existing cuisine in the db",
+											"disabled": true
+										},
+										{
+											"key": "diets",
+											"value": "Keto",
+											"description": "Filters by a diet: Must be an existing diet in the db"
+										},
+										{
+											"key": "overall_cooking_time",
+											"value": "",
+											"description": "Filters by cooking time (in minutes)",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"description": "Pagination parameter"
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "Pagination parameter"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Ingredient Autocomplete",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/ingredients/?search&limit&offset",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"ingredients",
+										""
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": null,
+											"description": "Search term for an ingredient"
+										},
+										{
+											"key": "limit",
+											"value": null,
+											"description": "Pagination Parameter"
+										},
+										{
+											"key": "offset",
+											"value": null,
+											"description": "Pagination Parameter"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "My Recipes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/my-recipes/?limit=10&offset=0",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"my-recipes",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "10",
+											"description": "pagination parameter"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create-update-delete",
+					"item": [
+						{
+							"name": "video/image",
+							"item": [
+								{
+									"name": "recipe",
+									"item": [
+										{
+											"name": "upload",
+											"item": [
+												{
+													"name": "Upload Recipe Image",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "image",
+																	"type": "file",
+																	"src": "/home/domi/Pictures/pfps/7e7.png"
+																},
+																{
+																	"key": "recipe",
+																	"value": "1",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "localhost:8000/recipes/upload/image/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"upload",
+																"image",
+																""
+															],
+															"query": [
+																{
+																	"key": "",
+																	"value": null,
+																	"disabled": true
+																}
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Upload Recipe Video",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "video",
+																	"description": "can be any file type as of now.",
+																	"type": "file",
+																	"src": "/home/domi/Pictures/pfps/kakashi.jpeg"
+																},
+																{
+																	"key": "recipe",
+																	"value": "1",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "localhost:8000/recipes/upload/video/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"upload",
+																"video",
+																""
+															],
+															"query": [
+																{
+																	"key": "",
+																	"value": null,
+																	"disabled": true
+																}
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "delete",
+											"item": [
+												{
+													"name": "Delete Image",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": []
+														},
+														"url": {
+															"raw": "localhost:8000/recipes/images/1/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"images",
+																"1",
+																""
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Delete Video",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "localhost:8000/recipes/videos/1/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"videos",
+																"1",
+																""
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "instruction",
+									"item": [
+										{
+											"name": "upload",
+											"item": [
+												{
+													"name": "Upload Instruction Video",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "video",
+																	"description": "it says video but you can upload any file type...",
+																	"type": "file",
+																	"src": "/home/domi/Pictures/pfps/7e7.png"
+																},
+																{
+																	"key": "recipe",
+																	"value": "1",
+																	"description": "The id of the recipe",
+																	"type": "text"
+																},
+																{
+																	"key": "instruction_number",
+																	"value": "1",
+																	"description": "The instruction number that this video will belong to",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "localhost:8000/recipes/instructions/upload/video/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"instructions",
+																"upload",
+																"video",
+																""
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Upload Instruction Image",
+													"request": {
+														"method": "POST",
+														"header": [],
+														"body": {
+															"mode": "formdata",
+															"formdata": [
+																{
+																	"key": "image",
+																	"description": "the image you would like to attach to that instruction number for that recipe",
+																	"type": "file",
+																	"src": "/home/domi/Pictures/pfps/kakashi.jpeg"
+																},
+																{
+																	"key": "recipe",
+																	"value": "1",
+																	"description": "the recipe you want to modify",
+																	"type": "text"
+																},
+																{
+																	"key": "instruction_number",
+																	"value": "1",
+																	"description": "the number of the instruction this picture is being attached to",
+																	"type": "text"
+																}
+															]
+														},
+														"url": {
+															"raw": "localhost:8000/recipes/instructions/upload/image/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"instructions",
+																"upload",
+																"image",
+																""
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										},
+										{
+											"name": "delete",
+											"item": [
+												{
+													"name": "Delete Instruction Video",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "localhost:8000/recipes/instructions/videos/1/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"instructions",
+																"videos",
+																"1",
+																""
+															]
+														}
+													},
+													"response": []
+												},
+												{
+													"name": "Delete Instruction Image",
+													"request": {
+														"method": "DELETE",
+														"header": [],
+														"url": {
+															"raw": "localhost:8000/recipes/instructions/images/1/",
+															"host": [
+																"localhost"
+															],
+															"port": "8000",
+															"path": [
+																"recipes",
+																"instructions",
+																"images",
+																"1",
+																""
+															]
+														}
+													},
+													"response": []
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Create Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"base_recipe_id\": null,\n  \"cuisines\": [\n    {\n      \"name\": \"Italian\"\n    }\n  ],\n  \"diets\": [\n    {\n      \"name\": \"Keto\"\n    }\n  ],\n  \"ingredients\": [\n    {\n      \"name\": \"Pizza Dough\",\n      \"units\": \"tsp\",\n      \"quantity\": 1\n    }\n  ],\n  \"overall_prep_time\": 0,\n  \"overall_cooking_time\": 0,\n  \"instructions\": [\n    {\n      \"prep_time\": 2,\n      \"cooking_time\": 1,\n      \"instruction\": \"kneed the dough\",\n      \"instruction_number\": 1\n    },\n    {\n      \"prep_time\": 2,\n      \"cooking_time\": 1,\n      \"instruction\": \"toss the dough\",\n      \"instruction_number\": 2\n    }\n  ],\n  \"name\": \"Pizza\",\n  \"num_servings\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/add/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"add",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recipe Partial Edit",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"overall_prep_time\": 20,\n  \"overall_cooking_time\": 100,\n  \"name\": \"Pizza Dough Edited\",\n  \"num_servings\": 1\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/2/edit/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"2",
+										"edit",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recipe Full Edit",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"base_recipe_id\": null,\n  \"cuisines\": [\n    {\n      \"name\": \"Italian\"\n    }\n  ],\n  \"diets\": [\n    {\n      \"name\": \"Keto\"\n    }\n  ],\n  \"ingredients\": [\n    {\n      \"name\": \"Warm Water\",\n      \"units\": \"cup\",\n      \"quantity\": 1.5\n    },\n    {\n      \"name\": \"Active Dry Yeast\",\n      \"units\": \"tsp\",\n      \"quantity\": 2.25\n    },\n    {\n      \"name\": \"Bread Flour\",\n      \"units\": \"cup\",\n      \"quantity\": 3.75\n    },\n    {\n      \"name\": \"Extra Virgin Olive Oil\",\n      \"units\": \"tbs\",\n      \"quantity\": 2\n    },\n    {\n      \"name\": \"Non-Kosher Salt\",\n      \"units\": \"tsp\",\n      \"quantity\": 2\n    }\n  ],\n  \"overall_prep_time\": 2,\n  \"overall_cooking_time\": 3,\n  \"instructions\": \"Full Edited\",\n  \"name\": \"Pizza Dough Full Edit\",\n  \"num_servings\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/2/edit/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"2",
+										"edit",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete Recipe",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/delete/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"delete",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Recipe",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/view/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"view",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "interactions",
+					"item": [
+						{
+							"name": "Favorite a Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/favorite/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"favorite",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Like a Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/like/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"like",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bookmark a Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/bookmark/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"bookmark",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Rate a Recipe",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rating\": 3\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/1/rate/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"rate",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "shopping-list",
+					"item": [
+						{
+							"name": "Add to Shopping List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"num_servings\": 2\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/1/add-to-shopping-list/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"add-to-shopping-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Remove from Shopping List",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"num_servings\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/1/add-to-shopping-list/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"add-to-shopping-list",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Shopping List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/shopping-list/?limit=3&offset=0",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"shopping-list",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "3",
+											"description": "pagination parameter"
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "pagination parameter"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "comments",
+					"item": [
+						{
+							"name": "Add a Comment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"text\": \"Nice :)\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8000/recipes/1/comments/add/",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"comments",
+										"add",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Comments for on a Recipe",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8000/recipes/1/comments/?limit=2&offset=0",
+									"host": [
+										"localhost"
+									],
+									"port": "8000",
+									"path": [
+										"recipes",
+										"1",
+										"comments",
+										""
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "2",
+											"description": "Pagination parameter"
+										},
+										{
+											"key": "offset",
+											"value": "0",
+											"description": "Pagination parameter; If both limit & offset aren't provided, all comments for that recipe will be returned.\n"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{auth_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "auth_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjc4NzQwMjIzLCJpYXQiOjE2Nzg3MjIyMjMsImp0aSI6IjRjMWEyY2E4ZmYyMjQwMmQ4OWRmZTk0YzQwZmRhZmEzIiwidXNlcl9pZCI6MX0.HroGG7muT47LypBMEJYgRAKYQowMuCJraO_wrPMXq4Y",
+			"type": "string"
+		}
+	]
+}
